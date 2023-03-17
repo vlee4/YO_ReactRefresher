@@ -23,13 +23,17 @@ function App() {
         reminder: false,
     },
 ]
-//eslint-disable-next-line
   const [tasks, setTasks] = useState(taskData)
+
+  //Delete Task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !==id))
+  }
 
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks}/>
+      {tasks.length>0? <Tasks onDelete={deleteTask} tasks={tasks}/>: "No Tasks to Show"}
     </div>
   );
 }
