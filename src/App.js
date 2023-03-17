@@ -24,6 +24,7 @@ function App() {
         reminder: false,
     },
 ]
+  const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState(taskData)
 
   //Delete Task
@@ -45,8 +46,8 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <AddTask onAdd={addTask}/>
+      <Header onAdd={()=>setShowAddTask(!showAddTask)} showAdd={showAddTask} />
+      {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length>0? <Tasks onDelete={deleteTask} onToggle={toggleReminder} tasks={tasks}/>: "No Tasks to Show"}
     </div>
   );
